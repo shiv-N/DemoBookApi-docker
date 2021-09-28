@@ -54,5 +54,22 @@ namespace demoApi.Controllers
                 return this.BadRequest(new {success = false,Message = ex.Message, InnerException = ex.InnerException});
             }
         }
+
+        [HttpGet("{Id}")]
+        public IActionResult GetBookById(int Id)
+        {
+            try{
+                    var Books = this._context.Books.FirstOrDefault(x => x.Id==Id);
+                    if(Books != null){
+                        return this.Ok(new {success = true, data = Books});
+                    }
+                    else{
+                        return this.NotFound(new {Message = "Book not found"});
+                    }
+                }
+            catch(Exception ex){
+                return this.BadRequest(new {success = false,Message = ex.Message, InnerException = ex.InnerException});
+            }
+        }
     }
 }
