@@ -28,7 +28,7 @@ namespace demoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var server = Configuration["DatabaseServer"] ?? "";
+            var server = Configuration["DatabaseServer"] ?? "localhost";
             var port = Configuration["DatabasePort"] ?? ""; // Default SQL Server port
             var user = Configuration["DatabaseUser"] ?? ""; // Warning do not use the SA account
             var password = Configuration["DatabasePassword"] ?? "";
