@@ -34,6 +34,12 @@ namespace demoApi
             var password = Configuration["DatabasePassword"] ?? "";
             var database = Configuration["DatabaseName"] ?? "";
 
+            Console.WriteLine($"Server = {server}");
+            Console.WriteLine($"port = {port}");
+            Console.WriteLine($"database = {database}");
+            Console.WriteLine($"user = {user}");
+            Console.WriteLine($"password = {password}");
+
             // Add Db context as a service to our application
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}"));

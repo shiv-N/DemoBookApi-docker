@@ -1,20 +1,22 @@
-version: '3.4'
+version: '3.8'
 services:
-  mssql-server:
-    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  quizzical_jang:
+    image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Pa$$w0rd2021"
+      SA_PASSWORD: "TestP@ssw0rd"
       MSSQL_PID: Express
     ports:
       - "1433:1433"
-  book-app:
+  demoapi:
     build: .
     environment: 
-      DatabaseServer: "mssql-server"
+      DatabaseServer: "quizzical_jang"
       DatabasePort: "1433"
       DatabaseUser: "SA"
-      DatabasePassword: "Pa$$w0rd2021"
+      DatabasePassword: "TestP@ssw0rd"
       DatabaseName: "BookDb"
     ports: 
       - "8090:80"
+    depends_on:
+      - quizzical_jang
